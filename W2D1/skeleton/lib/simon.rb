@@ -1,4 +1,3 @@
-require "byebug"
 class Simon
   COLORS = %w(red blue green yellow)
 
@@ -77,6 +76,3 @@ class Simon
     @seq= []
   end
 end
-
-g= Simon.new
-g.play
