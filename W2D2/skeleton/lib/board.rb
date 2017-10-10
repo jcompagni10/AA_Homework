@@ -20,6 +20,9 @@ class Board
     unless start_pos.between?(0,12)
       raise "Invalid starting cup"
     end
+    if @cups[start_pos].empty?
+      raise "Invalid starting cup"
+    end
   end
 
   def make_move(start_pos, current_player_name)
