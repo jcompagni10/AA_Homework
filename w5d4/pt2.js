@@ -5,7 +5,8 @@ function titleize(arr, callback){
   callback(titles)
 }
 
-// titleize(["joe", "jen"], function(x){console.log(x)})
+
+titleize(["joe", "jen"], function(x){console.log(x)})
 
 function Elephant(name, height, tricks){
   this.name=name;
