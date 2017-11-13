@@ -4,4 +4,11 @@ const selectCurrency = (baseCurrency, rates)=>({
   rates: rates
 });
 
-export default selectCurrency;
+const selectCity = (city, temp, description)=>({
+  type: "SWITCH_CITY",
+  city: city,
+  temp: temp,
+  description: description
+});
+
+export {selectCurrency, selectCity};

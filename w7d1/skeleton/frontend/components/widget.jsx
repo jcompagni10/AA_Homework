@@ -1,11 +1,12 @@
 import React from 'react';
 import Currency from './currency';
-import selectCurrency from '../actions';
+import {selectCurrency} from '../actions';
 
 class Widget extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.forceUpdate = this.forceUpdate.bind(this);
 
     // require this component to re-render whenever the store's state changes
@@ -38,7 +39,7 @@ class Widget extends React.Component {
     const { rates, baseCurrency } = this.props.store.getState();
 
     const currencyOptions = this.currencies.map( (currency) => (
-        <div onClick={ () => { this.fetchRates(currency) }}
+        <div onClick={ () => { this.fetchRates(currency); }}
              key={currency}
              className="currency-option">
           {currency}
