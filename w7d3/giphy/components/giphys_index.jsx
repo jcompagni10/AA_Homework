@@ -8,8 +8,8 @@ const giphyIndex = (props)=>{
     <div>
       <ul>
         {props.giphys.map((giphy)=>(
-          <li className ="giphy-li">
-            <img className="giphy" key = {giphy.id} src = {giphy.images.original.webp}/>
+          <li key = {giphy.id} className ="giphy-li">
+            <img className="giphy"  src = {giphy.images.original.url}/>
           </li>
         ))}
       </ul>
