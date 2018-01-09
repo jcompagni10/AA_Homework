@@ -4,7 +4,7 @@ require 'bst_practical'
 describe 'BST Practical Question' do
   let(:prefilled_bst) do
     bst = BinarySearchTree.new
-    [5, 3, 7, 1, 4, 9, 0, 2, 1.5, 10].each do |el|
+    [9,8].each do |el|
       bst.insert(el)
     end
 
@@ -21,14 +21,14 @@ describe 'BST Practical Question' do
   end
 
   it "returns the kth largest node" do
-    k = 7
-    k_node = prefilled_bst.root.left.left.right
+    k = 1
+    k_node = prefilled_bst.root.left
     # the above node is pointing to the node with value 2
 
     expect(kth_largest(prefilled_bst.root, k)).to be(k_node)
 
 
-    n = 2 
+    n = 0
     n_node = balanced_bst.root.right
     # the above node is pointing to the node with value 16
 
