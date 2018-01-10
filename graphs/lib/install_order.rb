@@ -11,24 +11,24 @@
 require_relative "graph"
 require_relative "topological_sort"
 
-def install_order(arr)
-  graph = {}
-  arr.each do |package|
-    vertex = graph[package[0]] || Vertex.new(package[0])
-    dependency = graph[package[1]] || Vertex.new(package[1])
-    Edge.new(dependency, vertex)
-    graph[vertex.value] = vertex
-    graph[dependency.value] = dependency
-  end
-  vertices = graph.values
-  sorted = topological_sort(vertices)
-  sorted = sorted.map(&:value)
-  add_missing(sorted, graph)
-  # vertices = {}
-  # arr.each do |package|
-  #   package = Vertex.new(package[0])
-  #   vertices[package.value] = package
-end
+# def install_order(arr)
+#   graph = {}
+#   arr.each do |package|
+#     vertex = graph[package[0]] || Vertex.new(package[0])
+#     dependency = graph[package[1]] || Vertex.new(package[1])
+#     Edge.new(dependency, vertex)
+#     graph[vertex.value] = vertex
+#     graph[dependency.value] = dependency
+#   end
+#   vertices = graph.values
+#   sorted = topological_sort(vertices)
+#   sorted = sorted.map(&:value)
+#   add_missing(sorted, graph)
+#   # vertices = {}
+#   # arr.each do |package|
+#   #   package = Vertex.new(package[0])
+#   #   vertices[package.value] = package
+# end
 
 def add_missing(arr, graph)
   max = arr.max
@@ -36,5 +36,23 @@ def add_missing(arr, graph)
   (0..max).each do |val|
     new_vals << val unless graph[val]
   end
-  return new_vals + arr
+  new_vals + arr
 end
+
+def install_order2(arr)
+  graph = {}
+  arr.each do |package|
+    vertex = graph[package[0]] || Vertex.new(package[0])
+    if package[1]
+      dependency = graph[package[1]] || Vertex.new(package[1]) 
+      Edge.new(dependency, vertex)
+      graph[dependency.value] = dependency
+    end
+    graph[vertex.value] = vertex
+  end
+  topological_sort(graph.values)
+end
+
+arr = [[3, 1], [2, 1], [6, 5], [3, 6], [3, 2], [4, 3], [9, 1], [1, nil], [5, nil]]
+
+p install_order2(arr).map(&:value)
